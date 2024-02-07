@@ -41,7 +41,7 @@ public class ControllerServlet extends HttpServlet {
 			Student student = new Student();
 			student.setSage((Integer.parseInt(sage)));
 			student.setSname(sname);
-			student.setAddress(saddr);
+			student.setSaddress(saddr);
 			String status = stdService.addStudent(student);
 			PrintWriter out = response.getWriter();
 			if (status.equals("success")) {
@@ -66,31 +66,18 @@ public class ControllerServlet extends HttpServlet {
 		} if (request.getRequestURI().endsWith("editform")) {
 			String sid = request.getParameter("sid");
 			Student student = stdService.searchStudent(Integer.parseInt(sid));
-			PrintWriter out = response.getWriter();
 			if (student != null) {
-				out.println("<body>");
-				out.println("<center>");
-				out.println("<form method='POST' action='./controller/updateform'>");
-				out.println("<table>");
-				out.println("<tr><th>ID</th><td>" + student.getSid() + "</td></tr>");
-				out.println("<input type='hidden' name='sid' value='" + student.getSid() + "'/>");
-				out.println("<tr><th>NAME</th><td><input type='text' name='sname' value='" + student.getSname()
-						+ "'/></td></tr>");
-				out.println("<tr><th>AGE</th><td><input type='text' name='sage' value='" + student.getSage()
-						+ "'/></td></tr>");
-				out.println("<tr><th>ADDRESS</th><td><input type='text' name='saddr' value='" + student.getAddress()
-						+ "'/></td></tr>");
-				out.println("<tr><th></th><td><input type='submit' value='update'/></td></tr>");
-				out.println("</table>");
-				out.println("</form>");
-				out.println("</center>");
-				out.println("</body>");
-			} else {
-				out.println("<h1 style='color:red; text-align:center'> Record Not Found</h1>");
+				request.setAttribute("student", student);
+				rd=request.getRequestDispatcher("../editRecord.jsp");
+				rd.forward(request, response);
 			}
-			out.close();
+			else {
+				request.setAttribute("student", student);
+				rd=request.getRequestDispatcher("../editRecord.jsp");
+				rd.forward(request, response);
+			}
+			
 		} if (request.getRequestURI().endsWith("updateform")) {
-			PrintWriter out = response.getWriter();
 			String sid = request.getParameter("sid");
 			String sage = request.getParameter("sage");
 			String sname = request.getParameter("sname");
@@ -99,7 +86,7 @@ public class ControllerServlet extends HttpServlet {
 			student.setSid(Integer.parseInt(sid));
 			student.setSage(Integer.parseInt(sage));
 			student.setSname(sname);
-			student.setAddress(saddr);
+			student.setSaddress(saddr);
 			String status = stdService.updateStudent(student);
 			if (status.equals("success")) {
 				rd = request.getRequestDispatcher("../updateSuccess.html");
@@ -108,7 +95,6 @@ public class ControllerServlet extends HttpServlet {
 				rd = request.getRequestDispatcher("../updateFailure.html");
 				rd.forward(request, response);
 			}
-			out.close();
 		} if (request.getRequestURI().endsWith("deleteform")) {
 			String sid = request.getParameter("sid");
 			String status = stdService.deleteStudent(Integer.parseInt(sid));

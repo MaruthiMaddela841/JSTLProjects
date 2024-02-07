@@ -21,7 +21,7 @@
 		<th>${student.sid}</th>
 		<th>${student.sname}</th>
 		<th>${student.sage}</th>
-		<th>${student.address}</th>
+		<th>${student.saddress}</th>
 		</tr>
 		</table>
 	</c:when>

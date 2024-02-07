@@ -27,10 +27,10 @@ public class Student implements Serializable{
 	public void setSage(Integer sage) {
 		this.sage = sage;
 	}
-	public String getAddress() {
+	public String getSaddress() {
 		return saddress;
 	}
-	public void setAddress(String saddress) {
+	public void setSaddress(String saddress) {
 		this.saddress = saddress;
 	}
 	

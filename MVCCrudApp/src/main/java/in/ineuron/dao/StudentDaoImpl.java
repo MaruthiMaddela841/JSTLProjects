@@ -26,7 +26,7 @@ public class StudentDaoImpl implements IStudentDao {
 		if(ps!=null) {
 			ps.setString(1,student.getSname());
 			ps.setInt(2, student.getSage());
-			ps.setString(3, student.getAddress());
+			ps.setString(3, student.getSaddress());
 			int rowsEffected=ps.executeUpdate();
 			System.out.println("Rows Effected;"+rowsEffected);
 			if(rowsEffected==1) {
@@ -60,7 +60,7 @@ public class StudentDaoImpl implements IStudentDao {
 				student.setSid(resultSet.getInt(1));
 				student.setSname(resultSet.getString(2));
 				student.setSage(resultSet.getInt(3));
-				student.setAddress(resultSet.getString(4));
+				student.setSaddress(resultSet.getString(4));
 				return student;
 				}
 			}
@@ -133,7 +133,7 @@ public class StudentDaoImpl implements IStudentDao {
 			if(ps!=null) {
 				ps.setString(1, student.getSname());
 				ps.setInt(2, student.getSage());
-				ps.setString(3,student.getAddress());
+				ps.setString(3,student.getSaddress());
 				ps.setInt(4, student.getSid());
 				Integer i=ps.executeUpdate();
 				if(i==1) {

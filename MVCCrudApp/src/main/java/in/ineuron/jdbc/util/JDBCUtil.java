@@ -38,7 +38,7 @@ public class JDBCUtil {
 	
 	@SuppressWarnings("unused")
 	private static Connection physicalConnection() throws IOException, SQLException {
-		FileInputStream fis= new FileInputStream("C:\\Users\\marut\\jsp-workspace\\MVCCrudApp\\src\\main\\java\\in\\ineuron\\properties\\application.properties");
+		FileInputStream fis= new FileInputStream("C:\\Users\\marut\\git\\repository\\MVCCrudApp\\src\\main\\java\\in\\ineuron\\properties\\application.properties");
 		Properties properties= new Properties();
 		properties.load(fis);
 		String url=properties.getProperty("url");
